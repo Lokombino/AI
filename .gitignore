@@ -1,0 +1,14 @@
+# File generati da LaTeX
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.toc
+
+# File temporanei
+.tmp
+
+# Clone separato di Isla-lab/AI_Lab
+AI_Lab/
