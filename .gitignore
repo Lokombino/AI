@@ -6,6 +6,7 @@
 *.synctex.gz
 *.out
 *.toc
+*.listing
 
 # File temporanei
 .tmp
