@@ -8,9 +8,9 @@
 % ---------- Matematica e font ----------
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{mathtools}
-\usepackage{newpxtext, newpxmath}          % testo e formule (Palatino)
-\usepackage[scale=0.95]{sourcesans}        % titoli
-\usepackage[scale=0.95]{inconsolata}       % pseudocodice
+\usepackage{newpxtext, newpxmath}          
+\usepackage[scale=0.95]{sourcesans}       
+\usepackage[scale=0.95]{inconsolata}       
 \usepackage{bm}
 \usepackage{microtype}
 \linespread{1.08}
@@ -177,7 +177,6 @@ A ogni passo l'agente ripete lo stesso ciclo:
   \item \textbf{Tell}: registra nella KB l'azione scelta;
   \item incrementa $t$ e restituisce l'azione.
 \end{enumerate}
-F
 
 Per funzionare, un agente deve saper:
 \begin{itemize}
@@ -504,5 +503,27 @@ La successione $A_1, \dots, A_n$ è una \textbf{dimostrazione} di $A$, e l'insie
               Push(Head[c], agenda)
       return false
   \end{codice}
+
+  \subsubsection*{Completezza del Forward Chaining}
+
+  La Forward Chaining deriva ogni fatto (simbolo singolo) atomico implicato dalla Keyword Base (KB).
+
+  L'algoritmo si ferma in un punto fisso, in cui non deduce nulla di nuovo e considera lo stato finale come un modello $m$, ovvero vero per ciò che è stato dedotto e falso per tutto il resto.
+
+  Ogni clausola della KB è vera in $m$, infatti se una regola in una successione $\text{a}_1\dots\text{a}_\text{k}\Rightarrow\text{b}$ fosse falsa, le premesse sarebbero tutte vere e b falso, ma così l'algoritmo avrebbe ancora qualcosa da dedurre e non ci sarebbe un punto di arrivo fisso (contraddizione).
+
+  $\Rightarrow$ quindi $m$ è un modello della KB, e se $\text{KB}\models\text{a}$, allora a è vero in ogni modello della KB, compreso $m$.
+
+  \subsubsection*{Backward Chaining}
+
+  L'idea è quella di lavorare all'indietro partendo dalla query q, altrimenti (qualora non funzioni o diventi troppo complesso) si cerca di trovare una regola che possa concludere q e provi a dimostrare ricorsivamente tutte le sue premesse.
+
+  È una buona pratica evitare i cicli (controllare sempre se un subgoal è già nello stack di goal) e il lavoro ripetuto (ricordare quali subgoal sono stati approvati e dimostrati e quali sono invece falliti).
+
+  \subsubsection*{Confronto tra backward e forward chaining}
+
+  Il forward chaining è manovrato dai dati, richiede spesso tanto lavoro inutile perchè deduce tutto, anche se inutile per la query.
+
+  Il backward chaining invece è più adatto al problem solving perchè guidato dall'obiettivo. Esplora solo ciò che è rilevante, quindi il suo costo può essere molto minore di un costo lineare nella dimensione della KB.
 
 \end{document}
